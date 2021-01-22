@@ -1,5 +1,22 @@
-import 'package:market_logger/market_logger.dart' as market_logger;
+import 'dart:io';
+import 'package:market_logger/key.dart';
+import 'package:bybit/bybit.dart';
 
-void main(List<String> arguments) {
-  print('Hello world: ${market_logger.calculate()}!');
+ByBit bybit;
+var out = File('log.txt').openWrite();
+
+/// Read messages from the bybit stream.
+Future<void> readWebSocket(Stream<dynamic> stream) async {
+  await for (var value in stream) {
+    out.write(value.toString() + '\n');
+  }
+}
+
+Future<void> main(List<String> arguments) async {
+  bybit = ByBit(logLevel: 'INFO', key: key, password: pwd);
+  bybit.connect();
+  bybit.subscribeToInstrumentInfo(symbol: 'ETHUSD');
+  bybit.subscribeToInstrumentInfo(symbol: 'BTCUSD');
+  await readWebSocket(bybit.stream);
+  //out.close();
 }

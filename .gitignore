@@ -7,3 +7,7 @@ build/
 
 # Directory created by dartdoc
 doc/api/
+
+# key pwd for api
+lib/key.dart
+log.txt
