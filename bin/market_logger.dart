@@ -14,7 +14,7 @@ Future<void> readWebSocket(Stream<dynamic> stream) async {
 }
 
 Future<void> main(List<String> arguments) async {
-  bybit = ByBit(logLevel: 'INFO', key: key, password: pwd);
+  bybit = ByBit(logLevel: 'INFO', key: key, password: pwd, autoreconnect: true);
   bybit.connect();
   bybit.subscribeToInstrumentInfo(symbol: 'ETHUSD');
   bybit.subscribeToInstrumentInfo(symbol: 'BTCUSD');

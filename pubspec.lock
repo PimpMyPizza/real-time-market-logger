@@ -11,10 +11,10 @@ packages:
   bybit:
     dependency: "direct main"
     description:
-      name: bybit
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.3.0"
+      path: "../bybit"
+      relative: true
+    source: path
+    version: "1.4.0"
   charcode:
     dependency: transitive
     description:
